@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				height: 3000px;
+			}
+			.nav{
+				width: 100%;
+				height: 50px;
+				background: purple;
+				line-height: 50px;
+				padding-left: 50px;
+			}
+			.nav a{
+				text-decoration: none;
+			}
+			.mask{
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				background: black;
+				opacity: 0.3;
+				/*ie 透明度*/ 
+				filter: alpha(opacity = 30);
+				display: none;
+			}
+			.register{
+				width: 300px;
+				height: 300px;
+				background: white;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -150px 0 0 -150px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+			<a href="javascrip:;" id="register">注册</a>
+			<a href="javascrip:;">登陆</a>
+		</div>
+		<!--遮罩层-->
+		<div class="mask">
+			
+		</div>
+		<div class="register" id="b">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var register=document.getElementById("register");
+		var mask=document.getElementsByTagName("div")[1];
+		var b=document.getElementById("b");
+		var box=document.getElementsByTagName("div")[2];
+		register.onclick=function(event){
+			event=event || window.event;
+			mask.style.display="block";
+			box.style.display="block";
+			//隐藏
+			document.body.style.overflow="hidden";
+			if(event && event.stopPropagation){
+				event.stopPropagation();
+			}else{
+				event.cancelBubble=true;
+			}
+		}
+		document.onclick=function(event){
+			event =event || window.event;
+			var targetId=event.target?event.target.id:event.srcElement.id;
+			if("b"!=targetId){
+				mask.style.display="none";
+				box.style.display="none";
+				//显示
+				document.body.style.overflow="visible";
+			}
+			
+		}
+	</script>
+</html>
